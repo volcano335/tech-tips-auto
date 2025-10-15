@@ -1,0 +1,51 @@
+# scripts/generate_post.py
+import json, random, datetime, os, sys
+
+REPO_DIR = os.getcwd()
+TIPS_FILE = os.path.join(REPO_DIR, "tips.json")
+POSTS_DIR = os.path.join(REPO_DIR, "_posts")
+
+os.makedirs(POSTS_DIR, exist_ok=True)
+
+with open(TIPS_FILE, "r", encoding="utf-8") as f:
+    tips = json.load(f)
+
+if not tips:
+    print("No tips found.")
+    sys.exit(1)
+
+tip = random.choice(tips)
+
+today = datetime.date.today()
+date_prefix = today.strftime("%Y-%m-%d")
+# sanitize title for filename
+import re
+filename_title = re.sub(r'[^0-9a-zA-Z\- ]+', '', tip['title']).strip().lower().replace(' ', '-')
+filename = f"{date_prefix}-{filename_title}.md"
+filepath = os.path.join(POSTS_DIR, filename)
+
+# Avoid duplicate file (if already created today)
+if os.path.exists(filepath):
+    print(f"Post for {date_prefix} already exists: {filename}")
+    sys.exit(0)
+
+# build content
+aff_tag = "{{AFFILIATE_TAG}}"  # placeholder — replace manually later if you want
+content = f"""---
+layout: post
+title: "{tip['title']}"
+date: {today.isoformat()}
+categories: tech tips
+---
+
+{tip['body']}
+
+---
+
+If you liked this tip, check out an affiliate tool here: https://www.amazon.com/dp/EXAMPLE?tag={aff_tag}
+"""
+
+with open(filepath, "w", encoding="utf-8") as f:
+    f.write(content)
+
+print("Created", filepath)
