@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Use a password manager",
+    "body": "A password manager (like Bitwarden) securely stores unique passwords and generates strong ones for you. Use it to never reuse passwords again."
+  },
+  {
+    "title": "Two-factor authentication (2FA)",
+    "body": "Enable 2FA on accounts that support it. Authenticator apps (Google Authenticator, Authy) are safer than SMS."
+  },
+  {
+    "title": "Use browser profiles",
+    "body": "Create separate browser profiles for work, personal banking, and casual browsing to isolate cookies and extensions."
+  },
+  {
+    "title": "Keyboard shortcuts boost productivity",
+    "body": "Learn system and app-level shortcuts (Ctrl/Cmd + K, Ctrl/Cmd + Shift + T). They save minutes every day."
+  },
+  {
+    "title": "Keep backups",
+    "body": "Use a 3-2-1 backup strategy: 3 copies, 2 different media, 1 offsite backup (e.g., cloud)."
+  }
+  // Add more tips — you can add dozens here
+]
